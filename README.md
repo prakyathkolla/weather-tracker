@@ -1,69 +1,79 @@
-# Welcome to your Lovable project
+# Weather Tracker Application
 
-## Project info
+A modern, responsive weather tracking application built with React and TypeScript that provides real-time weather information and forecasts.
 
-**URL**: https://lovable.dev/projects/ee9d9de9-514e-4f05-b515-af698a177563
+## Features
 
-## How can I edit this code?
+- **Current Weather Display**: View current weather conditions including temperature, humidity, and wind speed
+- **Location Search**: Search for weather information by city name or use your current location
+- **Temperature Unit Toggle**: Switch between Celsius and Fahrenheit
+- **24-Hour Forecast**: Detailed hourly weather forecast with scrollable interface
+- **10-Day Forecast**: Extended weather forecast showing daily high and low temperatures
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
 
-There are several ways of editing your application.
+## Technologies Used
 
-**Use Lovable**
+This project is built with modern web technologies:
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/ee9d9de9-514e-4f05-b515-af698a177563) and start prompting.
+- **React**: Frontend library for building user interfaces
+- **TypeScript**: Static typing for enhanced development experience
+- **Vite**: Next-generation frontend tooling
+- **Tailwind CSS**: Utility-first CSS framework
+- **Shadcn/ui**: High-quality UI components
+- **WeatherAPI**: Real-time weather data provider
+- **Supabase**: Backend infrastructure and API key management
 
-Changes made via Lovable will be committed automatically to this repo.
+## Getting Started
 
-**Use your preferred IDE**
+1. Clone the repository:
+```bash
+git clone <repository-url>
+```
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+2. Install dependencies:
+```bash
+npm install
+```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Start the development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Project Structure
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- `src/components/`: React components including weather displays and search functionality
+- `src/utils/`: Utility functions and API service
+- `src/pages/`: Main application pages
+- `src/integrations/`: Third-party service integrations
 
-**Use GitHub Codespaces**
+## Key Components
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- **CurrentWeather**: Displays current weather conditions
+- **HourlyForecast**: Shows 24-hour weather forecast with scrollable interface
+- **DailyForecast**: Presents 10-day weather forecast
+- **LocationSearch**: Handles location input and current location detection
 
-## What technologies are used for this project?
+## Environment Variables
 
-This project is built with .
+The application requires the following environment variables:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- `RAPIDAPI_KEY`: API key for WeatherAPI (managed through Supabase)
 
-## How can I deploy this project?
+## Contributing
 
-Simply open [Lovable](https://lovable.dev/projects/ee9d9de9-514e-4f05-b515-af698a177563) and click on Share -> Publish.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## I want to use a custom domain - is that possible?
+## License
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+This project is open source and available under the MIT License.
+
+## Acknowledgments
+
+- Weather data provided by [WeatherAPI.com](https://www.weatherapi.com/)
+- UI components from [shadcn/ui](https://ui.shadcn.com/)
+- Icons from [Lucide](https://lucide.dev/)
