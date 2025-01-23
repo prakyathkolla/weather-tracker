@@ -5,7 +5,7 @@ const WEATHER_API_URL = 'https://weatherapi-com.p.rapidapi.com';
 const weatherApi = axios.create({
   baseURL: WEATHER_API_URL,
   headers: {
-    'X-RapidAPI-Key': 'YOUR-API-KEY',
+    'X-RapidAPI-Key': import.meta.env.VITE_RAPIDAPI_KEY || '',
     'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
   }
 });
