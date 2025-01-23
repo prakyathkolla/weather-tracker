@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Slider } from "@/components/ui/slider";
 import { WeatherData } from "@/utils/weatherService";
 
@@ -10,32 +10,31 @@ interface HourlyForecastProps {
 
 export const HourlyForecast = ({ forecast, unit }: HourlyForecastProps) => {
   const [scrollPosition, setScrollPosition] = useState([0]);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const scrollViewportRef = useRef<HTMLDivElement>(null);
   const isUserScrolling = useRef(false);
 
   const handleSliderChange = (value: number[]) => {
-    if (!scrollContainerRef.current) return;
+    if (!scrollViewportRef.current) return;
     
     isUserScrolling.current = true;
     setScrollPosition(value);
     
-    const container = scrollContainerRef.current;
-    const maxScroll = container.scrollWidth - container.clientWidth;
+    const viewport = scrollViewportRef.current;
+    const maxScroll = viewport.scrollWidth - viewport.clientWidth;
     const newPosition = (maxScroll * value[0]) / 100;
-    container.scrollLeft = newPosition;
+    viewport.scrollLeft = newPosition;
     
-    // Reset the flag after a short delay
     setTimeout(() => {
       isUserScrolling.current = false;
     }, 100);
   };
 
-  const handleScroll = () => {
-    if (!scrollContainerRef.current || isUserScrolling.current) return;
+  const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
+    if (isUserScrolling.current) return;
     
-    const container = scrollContainerRef.current;
-    const maxScroll = container.scrollWidth - container.clientWidth;
-    const currentScroll = container.scrollLeft;
+    const viewport = event.currentTarget;
+    const maxScroll = viewport.scrollWidth - viewport.clientWidth;
+    const currentScroll = viewport.scrollLeft;
     const newPosition = (currentScroll / maxScroll) * 100;
     
     setScrollPosition([newPosition]);
@@ -46,9 +45,9 @@ export const HourlyForecast = ({ forecast, unit }: HourlyForecastProps) => {
       <h2 className="text-xl font-semibold mb-4">24 Hour Forecast</h2>
       <ScrollArea className="w-full whitespace-nowrap rounded-md">
         <div 
-          ref={scrollContainerRef}
+          ref={scrollViewportRef}
           onScroll={handleScroll}
-          className="flex space-x-4 p-4 hourly-scroll-container overflow-x-auto"
+          className="flex space-x-4 p-4"
         >
           {forecast.map((hour, index) => (
             <div
@@ -72,6 +71,7 @@ export const HourlyForecast = ({ forecast, unit }: HourlyForecastProps) => {
             </div>
           ))}
         </div>
+        <ScrollBar orientation="horizontal" />
       </ScrollArea>
       <div className="mt-4 px-4">
         <Slider
