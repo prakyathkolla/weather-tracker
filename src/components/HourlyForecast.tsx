@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Slider } from "@/components/ui/slider";
 import { WeatherData } from "@/utils/weatherService";
@@ -10,23 +10,46 @@ interface HourlyForecastProps {
 
 export const HourlyForecast = ({ forecast, unit }: HourlyForecastProps) => {
   const [scrollPosition, setScrollPosition] = useState([0]);
-  const containerRef = useState<HTMLDivElement | null>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const isUserScrolling = useRef(false);
 
   const handleSliderChange = (value: number[]) => {
+    if (!scrollContainerRef.current) return;
+    
+    isUserScrolling.current = true;
     setScrollPosition(value);
-    const scrollContainer = document.querySelector('.hourly-scroll-container');
-    if (scrollContainer) {
-      const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
-      const newPosition = (maxScroll * value[0]) / 100;
-      scrollContainer.scrollLeft = newPosition;
-    }
+    
+    const container = scrollContainerRef.current;
+    const maxScroll = container.scrollWidth - container.clientWidth;
+    const newPosition = (maxScroll * value[0]) / 100;
+    container.scrollLeft = newPosition;
+    
+    // Reset the flag after a short delay
+    setTimeout(() => {
+      isUserScrolling.current = false;
+    }, 100);
+  };
+
+  const handleScroll = () => {
+    if (!scrollContainerRef.current || isUserScrolling.current) return;
+    
+    const container = scrollContainerRef.current;
+    const maxScroll = container.scrollWidth - container.clientWidth;
+    const currentScroll = container.scrollLeft;
+    const newPosition = (currentScroll / maxScroll) * 100;
+    
+    setScrollPosition([newPosition]);
   };
 
   return (
     <div className="w-full bg-white/10 backdrop-blur-md rounded-lg p-4">
       <h2 className="text-xl font-semibold mb-4">24 Hour Forecast</h2>
       <ScrollArea className="w-full whitespace-nowrap rounded-md">
-        <div className="flex space-x-4 p-4 hourly-scroll-container">
+        <div 
+          ref={scrollContainerRef}
+          onScroll={handleScroll}
+          className="flex space-x-4 p-4 hourly-scroll-container overflow-x-auto"
+        >
           {forecast.map((hour, index) => (
             <div
               key={index}
