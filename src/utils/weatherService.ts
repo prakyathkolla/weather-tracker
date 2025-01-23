@@ -1,14 +1,26 @@
 import axios from 'axios';
+import { supabase } from "@/integrations/supabase/client";
 
 const WEATHER_API_URL = 'https://weatherapi-com.p.rapidapi.com';
 
-const weatherApi = axios.create({
-  baseURL: WEATHER_API_URL,
-  headers: {
-    'X-RapidAPI-Key': import.meta.env.VITE_RAPIDAPI_KEY || '',
-    'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
+const getWeatherApi = async () => {
+  const { data: { RAPIDAPI_KEY }, error } = await supabase.functions.invoke('get-secret', {
+    body: { name: 'RAPIDAPI_KEY' }
+  });
+  
+  if (error || !RAPIDAPI_KEY) {
+    console.error('Error fetching API key:', error);
+    throw new Error('Failed to fetch API key');
   }
-});
+
+  return axios.create({
+    baseURL: WEATHER_API_URL,
+    headers: {
+      'X-RapidAPI-Key': RAPIDAPI_KEY,
+      'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
+    }
+  });
+};
 
 export interface WeatherData {
   location: {
@@ -53,6 +65,7 @@ export interface WeatherData {
 }
 
 export const getWeatherData = async (location: string): Promise<WeatherData> => {
+  const weatherApi = await getWeatherApi();
   try {
     const response = await weatherApi.get('/forecast.json', {
       params: {
