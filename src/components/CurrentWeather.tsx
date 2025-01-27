@@ -29,7 +29,7 @@ export const CurrentWeather = ({ data, unit, onUnitToggle }: CurrentWeatherProps
         </Button>
       </div>
       
-      <div className="mt-6 flex items-center justify-between">
+      <div className="mt-6 flex flex-col md:flex-row items-center md:justify-between space-y-4 md:space-y-0">
         <div className="flex items-center">
           <img
             src={data.current.condition.icon}
@@ -45,7 +45,7 @@ export const CurrentWeather = ({ data, unit, onUnitToggle }: CurrentWeatherProps
             <p className="text-lg">{data.current.condition.text}</p>
           </div>
         </div>
-        <div className="space-y-2">
+        <div className="space-y-2 text-center md:text-left">
           <p className="text-sm">Humidity: {data.current.humidity}%</p>
           <p className="text-sm">Wind: {Math.round(data.current.wind_kph)} km/h</p>
         </div>
