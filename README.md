@@ -11,6 +11,8 @@ A modern, responsive weather tracking application built with React and TypeScrip
 - **10-Day Forecast**: Extended weather forecast showing daily high and low temperatures
 - **Responsive Design**: Works seamlessly on desktop and mobile devices
 
+![ScreenShot of Form](images/weather.png)
+
 ## Technologies Used
 
 This project is built with modern web technologies:
