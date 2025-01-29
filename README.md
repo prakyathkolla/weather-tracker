@@ -4,7 +4,7 @@ A modern, responsive weather tracking application built with React and TypeScrip
 
 ## 🔗 Live Demo
 
-[Visit Project Website](https://weathertracker.kollaprakyath.dev/)
+[Visit Weather Website](https://weathertracker.kollaprakyath.dev/)
 
 ---
 
