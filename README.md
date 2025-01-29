@@ -2,6 +2,12 @@
 
 A modern, responsive weather tracking application built with React and TypeScript that provides real-time weather information and forecasts.
 
+## 🔗 Live Demo
+
+[Visit Project Website](https://weathertracker.kollaprakyath.dev/)
+
+---
+
 ## Features
 
 - **Current Weather Display**: View current weather conditions including temperature, humidity, and wind speed
@@ -12,6 +18,8 @@ A modern, responsive weather tracking application built with React and TypeScrip
 - **Responsive Design**: Works seamlessly on desktop and mobile devices
 
 ![ScreenShot of Form](images/weather.png)
+
+---
 
 ## Technologies Used
 
@@ -24,6 +32,8 @@ This project is built with modern web technologies:
 - **Shadcn/ui**: High-quality UI components
 - **WeatherAPI**: Real-time weather data provider
 - **Supabase**: Backend infrastructure and API key management
+
+---
 
 ## Getting Started
 
@@ -41,6 +51,7 @@ npm install
 ```bash
 npm run dev
 ```
+---
 
 ## Key Components
 
@@ -49,15 +60,21 @@ npm run dev
 - **DailyForecast**: Presents 10-day weather forecast
 - **LocationSearch**: Handles location input and current location detection
 
+---
+
 ## Environment Variables
 
 The application requires the following environment variables:
 
 - `RAPIDAPI_KEY`: API key for WeatherAPI (managed through Supabase)
 
+---
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
 
 ## Acknowledgments
 
